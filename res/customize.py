@@ -37,10 +37,10 @@ if os.path.exists(config_path):
         hard_settings_patch
     )
 
-    # 5. Overwrite settings: ID whitelist (1210139263 & leapson-admin) + Disable IP whitelist + Relay server (hbbr.leapson.net:21117)
+    # 5. Overwrite settings: Disable ID whitelist & IP whitelist (Allow any Leapson remote client with Key) + Relay server
     overwrite_settings_patch = '''pub static ref OVERWRITE_SETTINGS: RwLock<HashMap<String, String>> = RwLock::new({
         let mut m = HashMap::new();
-        m.insert("id-whitelist".to_string(), "1210139263,1 210 139 263,leapson-admin,leapson_admin".to_string());
+        m.insert("id-whitelist".to_string(), "".to_string());
         m.insert("whitelist".to_string(), "".to_string());
         m.insert("relay-server".to_string(), "hbbr.leapson.net:21117".to_string());
         m
